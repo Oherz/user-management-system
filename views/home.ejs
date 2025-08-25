@@ -1,0 +1,48 @@
+<html>
+<body>
+    <h1>User Management System</h1>
+    <!-- Display Users -->
+    <h2>Current Users</h2>
+    <table border="1">
+        <tr>
+            <th>User Id</th>
+            <th>User Name</th>
+            <th>User Email</th>
+            <th>Age</th>
+            <th>Delete</th>
+        </tr>
+        <% data.forEach(user => { %>
+        <tr>
+            <td><%= user.userUniqueId %></td>
+            <td><%= user.userName %></td>
+            <td><%= user.userEmail %></td>
+            <td><%= user.userAge %></td>
+            <td>
+                <form action="/delete" method="post">
+                    <input type="hidden" name="userUniqueId" value="<%= user.userUniqueId %>">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        <% }) %>
+    </table>
+     <!-- Add User Form -->
+     <h2>Add User</h2>
+     <form action="/" method="post">
+         <input type="text" placeholder="User Unique Id" name="userUniqueId" required>
+         <input type="text" placeholder="User Name" name="userName" required>
+         <input type="text" placeholder="User Email" name="userEmail" required>
+         <input type="text" placeholder="User Age" name="userAge" required>
+         <button type="submit">Submit</button>
+     </form>
+    <!-- Update User Form -->
+    <h2>Update User</h2>
+    <form action="/update" method="post">
+        <input type="text" placeholder="User Unique Id" name="userUniqueId" required>
+        <input type="text" placeholder="User Name" name="userName">
+        <input type="text" placeholder="User Email" name="userEmail">
+        <input type="text" placeholder="User Age" name="userAge">
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>
